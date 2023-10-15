@@ -5,10 +5,36 @@ import facebookLogo from "../../assets/img/facebook-logo.jpg";
 import { FaArrowLeft } from "react-icons/fa";
 import FormRegister from "../../components/Form/FormRegister";
 import { Link } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 const Register = () => {
   return (
     <div className="w-full h-screen flex items-start">
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
       <div className="relative w-5/12 h-full flex flex-col">
         <div className="absolute top-4 left-4 flex flex-col">
           <div className="bg-slate-400 opacity-70 text-white flex items-center justify-center rounded-md py-2 px-4 hover:cursor-pointer">

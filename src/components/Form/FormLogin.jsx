@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -96,9 +97,11 @@ const FormLogin = () => {
     e.preventDefault();
 
     if (isFormValid) {
-      alert("Login berhasil");
+      toast.success("Login Berhasil!");
 
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
   };
 

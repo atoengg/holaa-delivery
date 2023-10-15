@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const FormRegister = () => {
@@ -156,9 +157,11 @@ const FormRegister = () => {
     e.preventDefault();
 
     if (isFormValid) {
-      alert("register berhasil");
+      toast.success("Registrasi Berhasil!");
 
-      navigate("/Login");
+      setTimeout(() => {
+        navigate("/Login");
+      }, 2000);
     }
   };
   return (
