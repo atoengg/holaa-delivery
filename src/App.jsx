@@ -1,18 +1,20 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
+// import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div className="flex align-center justify-center">
-        <h1 className="text-teal-600 font-bold text-2xl">
-          Bismillah Mini Project
-        </h1>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Register />} />
+          <Route path="/Login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
