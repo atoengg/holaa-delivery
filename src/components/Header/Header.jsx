@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../assets/logo/Logo.png";
+import Logo from "../../assets/logo/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart, FaArrowRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";

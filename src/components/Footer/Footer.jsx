@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo/Logo.png";
+import logo from "../../assets/logo/logo.png";
 import {
   FaLocationArrow,
   FaWhatsapp,

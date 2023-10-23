@@ -31,11 +31,11 @@ const CartItem = ({ item }) => {
 
   return (
     <div className="border-0 mb-[10px] ">
-      <div className=" flex gap-2 pb-[10px]">
+      <div className=" flex gap-2 pb-[10px] mx-4">
         <img
           src={image1}
           alt="product-img"
-          className="w-[35px] h-[35px] object-cover"
+          className="w-20 h-20 bg-cover object-cover"
         />
         <div className="flex items-center justify-between gap-4 w-full">
           <div className="">
