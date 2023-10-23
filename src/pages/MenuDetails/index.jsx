@@ -62,19 +62,19 @@ const MenuDetails = () => {
           <div className="grid grid-cols-4 ">
             <div className="">
               <div
-                className="mb-4"
+                className="mb-4 hover:cursor-pointer"
                 onClick={() => setPreviewImg(product.image1)}
               >
                 <img src={product.image1} className="w-1/2" alt="productImg" />
               </div>
               <div
-                className="mb-4"
+                className="mb-4 hover:cursor-pointer"
                 onClick={() => setPreviewImg(product.image2)}
               >
                 <img src={product.image2} className="w-1/2" alt="productImg" />
               </div>
               <div
-                className="mb-4"
+                className="mb-4 hover:cursor-pointer"
                 onClick={() => setPreviewImg(product.image3)}
               >
                 <img src={product.image3} className="w-1/2" alt="productImg" />
