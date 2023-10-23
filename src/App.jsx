@@ -5,18 +5,21 @@ import viteLogo from "/vite.svg";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import HomePage from "./pages/HomePage";
+
+import Layout from "./components/Layout/Layout";
+import Routers from "./routes/Routers";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      {/* <Routers /> */}
+      <Layout />
+      {/* <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </>
   );
 }
