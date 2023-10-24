@@ -48,7 +48,7 @@ const Header = () => {
                   <NavLink
                     to={item.path}
                     activeClassName="active"
-                    className="hover:text-red-500"
+                    className="hover:text-red-500 font-semibold"
                   >
                     {item.display}
                   </NavLink>
