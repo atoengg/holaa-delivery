@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Layout from "../components/Layout/Layout";
+import Checkout from "../pages/Checkout";
 
 // const MainLayout = () => {
 //   return (
@@ -37,6 +38,7 @@ const Routers = () => {
       <Route path="/menuDetails/:id" element={<MenuDetails />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/checkout" element={<Checkout />} />
       {/* <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} /> */}
     </Routes>
