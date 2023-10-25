@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import iconDana from "../../assets/logo/dana.png";
 import iconGoPay from "../../assets/logo/goPay.png";
 import iconShopeePay from "../../assets/logo/shopeePay.png";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../redux/slices/shopping-cart/cartSlices";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import Swal from "sweetalert2";
 
 const FormCheckout = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [input, setInput] = useState({
+    id: uuidv4(),
     name: "",
     email: "",
     noTelepon: "",
     desa: "",
     kodePos: "",
+    payments: "",
   });
   const [errMsg, setErrMsg] = useState({
     name: "",
@@ -17,7 +27,20 @@ const FormCheckout = () => {
     noTelepon: "",
     desa: "",
     kodePos: "",
+    payments: "",
   });
+
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  useEffect(() => {
+    // memantau perubahan pada errMsg dan memperbarui isFormValid
+    const isFormValid = Object.values(errMsg).every((error) => !error);
+    setIsFormValid(isFormValid);
+  }, [errMsg]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleInputchange = (e) => {
     const { name, value } = e.target;
@@ -109,9 +132,23 @@ const FormCheckout = () => {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isFormValid) {
+      Swal.fire("Chekout Berhasil!", "You clicked the button!", "success");
+      dispatch(cartActions.addPayment(input));
+
+      setTimeout(() => {
+        navigate("/checkoutSucces");
+      }, 2000);
+    }
+  };
+
   return (
     <div>
-      <form action="#">
+      <form action="#" onSubmit={handleSubmit}>
         <div className="mt-5">
           <div className="relative">
             <input
@@ -243,7 +280,14 @@ const FormCheckout = () => {
                 <p className="font-bold text-lg">Pilih Metode Pembayaran:</p>
 
                 <div className="flex items-center border px-4 py-2 rounded-md mt-4 bg-slate-200/50">
-                  <input type="radio" value="dana" name="payments" required />
+                  <input
+                    type="radio"
+                    value="dana"
+                    name="payments"
+                    required
+                    checked={input.payments === "dana"}
+                    onChange={handleInputchange}
+                  />
                   <img
                     src={iconDana}
                     alt="dana-icon"
@@ -254,7 +298,14 @@ const FormCheckout = () => {
                   </label>
                 </div>
                 <div className="flex items-center border px-4 py-2 rounded-md mt-4 bg-slate-200/50">
-                  <input type="radio" value="gopay" name="payments" required />
+                  <input
+                    type="radio"
+                    value="gopay"
+                    name="payments"
+                    required
+                    checked={input.payments === "gopay"}
+                    onChange={handleInputchange}
+                  />
                   <img
                     src={iconGoPay}
                     alt="gopay-icon"
@@ -270,6 +321,8 @@ const FormCheckout = () => {
                     value="shopeePay"
                     name="payments"
                     required
+                    checked={input.payments === "shopeePay"}
+                    onChange={handleInputchange}
                   />
                   <img
                     src={iconShopeePay}
@@ -280,6 +333,19 @@ const FormCheckout = () => {
                     ShopeePay
                   </label>
                 </div>
+              </div>
+              <div className="mt-5">
+                <button
+                  disabled={!isFormValid}
+                  type="submit"
+                  className={`w-full ${
+                    isFormValid === false
+                      ? "bg-red-300 hover:cursor-default"
+                      : "bg-red-500"
+                  } text-white py-4 text-lg text-center font-semibold rounded-md hover:transition hover:duration-200 hover:bg-red-300`}
+                >
+                  Checkout Sekarang
+                </button>
               </div>
             </div>
           </div>

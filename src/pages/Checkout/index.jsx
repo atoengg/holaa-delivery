@@ -43,15 +43,6 @@ const Checkout = () => {
                   Rp.<span>{totalAmount}</span>
                 </h1>
               </div>
-
-              <div className="mt-5">
-                <button
-                  type="submit"
-                  className="w-full bg-red-500 text-white py-4 text-lg text-center font-semibold rounded-md hover:transition hover:duration-200 hover:bg-red-300"
-                >
-                  Checkout Sekarang
-                </button>
-              </div>
             </div>
           </div>
         </div>

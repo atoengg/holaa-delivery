@@ -1,7 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
 
 const initialState = {
   cartItems: [],
+  payments: {
+    id: uuid(),
+    name: "",
+    email: "",
+    noTelepon: "",
+    desa: "",
+    kodePos: "",
+    payments: "",
+  },
+
   totalQuantity: 0,
   totalAmount: 0,
 };
@@ -10,6 +21,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    addPayment(state, action) {
+      state.payments = action.payload;
+    },
+
     // fungsi reducer untuk menambahkan item
     addItem(state, action) {
       const newItem = action.payload;

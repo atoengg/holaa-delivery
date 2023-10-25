@@ -11,6 +11,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Layout from "../components/Layout/Layout";
 import Checkout from "../pages/Checkout";
+import CheckoutSucces from "../pages/CheckoutSucces";
 
 // const MainLayout = () => {
 //   return (
@@ -39,6 +40,7 @@ const Routers = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/checkoutSucces" element={<CheckoutSucces />} />
       {/* <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} /> */}
     </Routes>
