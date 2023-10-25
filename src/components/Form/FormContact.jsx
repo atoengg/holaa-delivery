@@ -102,6 +102,7 @@ const FormContact = () => {
             type="text"
             name="username"
             id="username"
+            required
             value={inputForm.username}
             onChange={handleInputChange}
             className="w-full outline-none bg-transparent text-base border-solid border py-3 px-3 rounded-md text-[#f3fff4] focus:border-slate-200"
@@ -116,6 +117,7 @@ const FormContact = () => {
             type="email"
             name="email"
             id="email"
+            required
             value={inputForm.email}
             onChange={handleInputChange}
             className="w-full outline-none bg-transparent text-base border-solid border py-3 px-3 rounded-md text-[#f3fff4] focus:border-slate-200"
@@ -129,6 +131,7 @@ const FormContact = () => {
           <textarea
             name="message"
             id="message"
+            required
             value={inputForm.message}
             onChange={handleInputChange}
             className="w-full outline-none bg-transparent text-base border-solid border py-3 px-3 rounded-md text-[#f3fff4] focus:border-slate-200"
