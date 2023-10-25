@@ -16,7 +16,7 @@ const Header = () => {
   const nav_item = [
     {
       display: "Home",
-      path: "/",
+      path: "/home",
     },
     {
       display: "Menu",
