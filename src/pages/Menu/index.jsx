@@ -3,9 +3,10 @@ import CommonSection from "../../components/UI/Common/CommonSection";
 import notFoundImg from "../../assets/img/404.jpg";
 import axios, { all } from "axios";
 import { FaSearch } from "react-icons/fa";
-import PropagateLoader from "react-spinners/PropagateLoader";
+
 import ProductCard from "../../components/UI/Product-Card/ProductCard";
 import ReactPaginate from "react-paginate";
+import CardSkeleton from "../../components/UI/ProductCard-Skeleton/CardSkeleton";
 
 const Menu = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -78,15 +79,7 @@ const Menu = () => {
         {/*  menampilkan seluruh menu */}
         <div className="grid grid-cols-4 gap-4 mt-8">
           {loading ? (
-            <div className="flex justify-center items-center col-span-4 my-5">
-              <PropagateLoader
-                color={"#f87171"}
-                loading={loading}
-                size={15}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
-            </div>
+            <CardSkeleton cards={8} />
           ) : searchProduct.length > 0 ? (
             displayPage?.map((item) => (
               <div

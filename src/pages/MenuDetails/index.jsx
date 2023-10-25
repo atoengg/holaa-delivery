@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../../components/UI/Product-Card/ProductCard";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/shopping-cart/cartSlices";
+import CardSkeleton from "../../components/UI/ProductCard-Skeleton/CardSkeleton";
 
 const MenuDetails = () => {
   const [product, setProducts] = useState([]);
@@ -12,6 +13,8 @@ const MenuDetails = () => {
 
   const [previewImg, setPreviewImg] = useState("");
   const [relatedProduct, setRelatedProduct] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -28,14 +31,18 @@ const MenuDetails = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
+
     axios
       .get(`${apiUrl}/products/${id}`)
       .then((res) => {
         setProducts(res.data);
         setPreviewImg(res.data.image1);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
 
     // Permintaan untuk produk terkait berdasarkan kategori
@@ -43,9 +50,11 @@ const MenuDetails = () => {
       .get(`${apiUrl}/products?category=${product.category}`)
       .then((res) => {
         setRelatedProduct(res.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   }, [id, product.category]);
 
@@ -87,7 +96,7 @@ const MenuDetails = () => {
 
             <div className="col-span-2 pl-12">
               <h2 className="font-bold text-5xl mb-8">{product.title}</h2>
-              <p className="text-red-500 flex items-center font-semibold  text-xl mb-4">
+              <p className="text-red-500 font-semibold  text-xl mb-4">
                 Harga:
                 <span className="text-2xl font-bold ml-2">
                   {" "}
@@ -123,14 +132,18 @@ const MenuDetails = () => {
           <div className="mt-4">
             <h2 className="font-bold text-2xl">Kamu Mungkin Juga Suka</h2>
             <div className="grid grid-cols-4 gap-4 mt-8">
-              {relatedProduct.map((item) => (
-                <div
-                  className="border border-solid shadow-md rounded-lg"
-                  key={item.id}
-                >
-                  <ProductCard item={item} />
-                </div>
-              ))}
+              {loading ? (
+                <CardSkeleton cards={8} />
+              ) : (
+                relatedProduct.map((item) => (
+                  <div
+                    className="border border-solid shadow-md rounded-lg"
+                    key={item.id}
+                  >
+                    <ProductCard item={item} />
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
