@@ -1,13 +1,16 @@
 import React from "react";
 import Logo from "../../assets/logo/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaShoppingCart, FaArrowRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { cartUiActions } from "../../redux/slices/shopping-cart/cartUiSlices";
 
 const Header = () => {
   const dispacth = useDispatch();
+
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+
+  const location = useLocation();
 
   const toggleCart = () => {
     dispacth(cartUiActions.toggle());
@@ -57,13 +60,17 @@ const Header = () => {
             </ul>
           </div>
           <div className="flex justify-between items-center">
-            <div className="relative mr-10 cursor-pointer" onClick={toggleCart}>
-              <FaShoppingCart />
-              <span className="bg-red-600 text-white rounded-full flex items-center justify-center -top-3 -right-3 w-4 h-4 text-sm absolute">
-                {totalQuantity}
-              </span>
-            </div>
-
+            {location.pathname !== "/checkoutSucces" && (
+              <div
+                className="relative mr-10 cursor-pointer"
+                onClick={toggleCart}
+              >
+                <FaShoppingCart />
+                <span className="bg-red-600 text-white rounded-full flex items-center justify-center -top-3 -right-3 w-4 h-4 text-sm absolute">
+                  {totalQuantity}
+                </span>
+              </div>
+            )}
             <Link to={"/Login"}>
               <button className="py-3 px-4 gap-3 bg-red-500 flex items-center rounded-full text-white hover:bg-red-300 hover:transition hover:duration-200">
                 Sign In

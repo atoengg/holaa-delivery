@@ -3,17 +3,19 @@ import iconDana from "../../assets/logo/dana.png";
 import iconGoPay from "../../assets/logo/goPay.png";
 import iconShopeePay from "../../assets/logo/shopeePay.png";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../../redux/slices/shopping-cart/cartSlices";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+import { paymentActions } from "../../redux/slices/payments-details/paymentSlices";
 
 const FormCheckout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const split = uuidv4().split("-").join("");
+
   const [input, setInput] = useState({
-    id: uuidv4(),
+    id: split,
     name: "",
     email: "",
     noTelepon: "",
@@ -138,7 +140,7 @@ const FormCheckout = () => {
 
     if (isFormValid) {
       Swal.fire("Chekout Berhasil!", "You clicked the button!", "success");
-      dispatch(cartActions.addPayment(input));
+      dispatch(paymentActions.addPayment(input));
 
       setTimeout(() => {
         navigate("/checkoutSucces");

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import logo from "../../assets/logo/logo.png";
 import { BsShare, BsDownload } from "react-icons/bs";
 
 const CheckoutSucces = () => {
+  // state untuk melacak apakah transaksi berhasil
+  const [transactionCompleted, setTransactionCompleted] = useState(false);
+
   const currentDate = new Date();
 
   // Format tanggal
@@ -22,12 +25,13 @@ const CheckoutSucces = () => {
   const formattedDate = currentDate.toLocaleDateString("id-ID", optionsDate);
   const formattedTime = currentDate.toLocaleTimeString("id-ID", optionsTime);
 
-  const payments = useSelector((state) => state.cart.payments);
+  const payments = useSelector((state) => state.payments.payments);
   const subTotal = useSelector((state) => state.cart.totalAmount);
 
   const ongkir = 3000;
 
   const totalAmount = subTotal + Number(ongkir);
+
   return (
     <div className="flex justify-center">
       <div className=" mt-32 bg-white rounded-md flex flex-col shadow-md shadow-slate-500/50 p-7 h-full min-w-[600px]">
