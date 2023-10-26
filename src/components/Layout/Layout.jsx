@@ -4,6 +4,7 @@ import Routers from "../../routes/Routers";
 import Footer from "../Footer/Footer";
 import Cart from "../UI/Cart/Cart";
 import { useSelector } from "react-redux";
+import ChatAI from "../UI/ChatAI/ChatAI";
 
 const Layout = () => {
   const showCart = useSelector((state) => state.cartUi.cartIsVisible);

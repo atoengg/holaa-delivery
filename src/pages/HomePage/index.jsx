@@ -15,6 +15,7 @@ import appleImg from "../../assets/logo/apple.png";
 import ProductCard from "../../components/UI/Product-Card/ProductCard";
 import Testimoni from "../../components/UI/Corousel/Testimoni";
 import CardSkeleton from "../../components/UI/ProductCard-Skeleton/CardSkeleton";
+import ChatAI from "../../components/UI/ChatAI/ChatAI";
 
 const HomePage = () => {
   const [category, setCategory] = useState("ALL");
@@ -327,6 +328,8 @@ const HomePage = () => {
         </div>
       </section>
       {/* End app section */}
+
+      <ChatAI />
     </div>
   );
 };
