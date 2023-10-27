@@ -1,10 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 
+const userId = localStorage.getItem("userId");
+
+const items =
+  localStorage.getItem(`cartItems_${userId}`) !== null
+    ? JSON.parse(localStorage.getItem(`cartItems_${userId}`))
+    : [];
+
+const totalAmount =
+  localStorage.getItem(`totalAmount_${userId}`) !== null
+    ? JSON.parse(localStorage.getItem(`totalAmount_${userId}`))
+    : 0;
+
+const totalQuantity =
+  localStorage.getItem(`totalQuantity_${userId}`) !== null
+    ? JSON.parse(localStorage.getItem(`totalQuantity_${userId}`))
+    : 0;
+
+const setItemFunc = (item, totalAmount, totalQuantity) => {
+  // Simpan keranjang belanja pengguna ke local storage sesuai dengan token pengguna
+  const userId = localStorage.getItem("userId");
+
+  localStorage.setItem(`cartItems_${userId}`, JSON.stringify(item));
+
+  localStorage.setItem(`totalAmount_${userId}`, JSON.stringify(totalAmount));
+
+  localStorage.setItem(
+    `totalQuantity_${userId}`,
+    JSON.stringify(totalQuantity)
+  );
+};
+
 const initialState = {
-  cartItems: [],
-  totalQuantity: 0,
-  totalAmount: 0,
+  cartItems: items,
+  totalQuantity: totalQuantity,
+  totalAmount: totalAmount,
 };
 
 const cartSlice = createSlice({
@@ -38,6 +69,12 @@ const cartSlice = createSlice({
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
       );
+
+      setItemFunc(
+        state.cartItems.map((item) => item),
+        state.totalAmount,
+        state.totalQuantity
+      );
     },
 
     // fungsi reducer untuk mengahapus item
@@ -58,6 +95,12 @@ const cartSlice = createSlice({
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
       );
+
+      setItemFunc(
+        state.cartItems.map((item) => item),
+        state.totalAmount,
+        state.totalQuantity
+      );
     },
 
     // fungsi reducer untuk delete item
@@ -73,6 +116,12 @@ const cartSlice = createSlice({
       state.totalAmount = state.cartItems.reduce(
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
+      );
+
+      setItemFunc(
+        state.cartItems.map((item) => item),
+        state.totalAmount,
+        state.totalQuantity
       );
     },
   },

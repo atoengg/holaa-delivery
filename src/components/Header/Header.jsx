@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../../assets/logo/logo.png";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { FaShoppingCart, FaArrowRight } from "react-icons/fa";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import {
+  FaShoppingCart,
+  FaArrowRight,
+  FaArrowAltCircleRight,
+} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { cartUiActions } from "../../redux/slices/shopping-cart/cartUiSlices";
+import { signOut, getAuth } from "firebase/auth";
+import { Context } from "../../context/AuthContext";
 
 const Header = () => {
   const dispacth = useDispatch();
+  const auth = getAuth();
+  const navigate = useNavigate();
+
+  const { user } = useContext(Context);
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
@@ -14,6 +24,17 @@ const Header = () => {
 
   const toggleCart = () => {
     dispacth(cartUiActions.toggle());
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      // Hapus token pengguna dari local storage
+      localStorage.removeItem("userId");
+      navigate("/Login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const nav_item = [
@@ -60,23 +81,37 @@ const Header = () => {
             </ul>
           </div>
           <div className="flex justify-between items-center">
-            {location.pathname !== "/checkoutSucces" && (
-              <div
-                className="relative mr-10 cursor-pointer"
-                onClick={toggleCart}
+            {location.pathname !== "/checkoutSucces" &&
+              location.pathname !== "/Login" &&
+              location.pathname !== "/Register" && (
+                <div
+                  className="relative mr-10 cursor-pointer"
+                  onClick={toggleCart}
+                >
+                  <FaShoppingCart />
+                  <span className="bg-red-600 text-white rounded-full flex items-center justify-center -top-3 -right-3 w-4 h-4 text-sm absolute">
+                    {totalQuantity}
+                  </span>
+                </div>
+              )}
+
+            {!user ? (
+              <Link to={"/Login"}>
+                <button className="py-3 px-4 gap-3 bg-red-500 flex items-center rounded-full text-white hover:bg-red-300 hover:transition hover:duration-200">
+                  Sign In
+                  <FaArrowRight />
+                </button>
+              </Link>
+            ) : (
+              <button
+                className="py-3 px-4 gap-3 bg-red-500 flex items-center justify-center rounded-full font-semibold text-white hover:bg-red-300 hover:transition hover:duration-200"
+                onClick={handleLogout}
               >
-                <FaShoppingCart />
-                <span className="bg-red-600 text-white rounded-full flex items-center justify-center -top-3 -right-3 w-4 h-4 text-sm absolute">
-                  {totalQuantity}
-                </span>
-              </div>
-            )}
-            <Link to={"/Login"}>
-              <button className="py-3 px-4 gap-3 bg-red-500 flex items-center rounded-full text-white hover:bg-red-300 hover:transition hover:duration-200">
-                Sign In
-                <FaArrowRight />
+                <p>LogOut</p>
+
+                <FaArrowAltCircleRight />
               </button>
-            </Link>
+            )}
           </div>
         </nav>
       </header>
