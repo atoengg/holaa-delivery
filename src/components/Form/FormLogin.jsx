@@ -99,33 +99,6 @@ const FormLogin = () => {
     }
   };
 
-  // const handleSumbit = (e) => {
-  //   e.preventDefault();
-
-  //   if (isFormValid) {
-  //     signInWithEmailAndPassword(auth, formInput.email, formInput.password)
-  //       .then((userCredential) => {
-  //         //berhasil
-  //         const user = userCredential.user;
-  //         const userId = user.uid; // Mengambil ID pengguna Firebase
-
-  //         console.log("user: ", user);
-  //         user.getIdToken().then((token) => {
-  //           // Simpan token pengguna ke local storage
-  //           localStorage.setItem("userToken", token);
-
-  //           toast.success("Login Berhasil!");
-  //           setTimeout(() => {
-  //             navigate("/home");
-  //           }, 2000);
-  //         });
-  //       })
-  //       .catch((erorr) => {
-  //         console.log(erorr);
-  //       });
-  //   }
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -147,6 +120,7 @@ const FormLogin = () => {
         })
         .catch((error) => {
           console.log(error);
+          toast.error("Email dan Password tidak sesuai");
         });
     }
   };

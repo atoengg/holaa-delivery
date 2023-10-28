@@ -162,7 +162,6 @@ const FormRegister = () => {
       createUserWithEmailAndPassword(auth, formInput.email, formInput.password)
         .then((user) => {
           //berhasil
-          console.log(user);
           toast.success("Registrasi Berhasil!");
           setTimeout(() => {
             navigate("/Login");
@@ -170,6 +169,7 @@ const FormRegister = () => {
         })
         .catch((erorr) => {
           console.log(erorr);
+          toast.error("Registrasi Gagal!");
         });
     }
   };
