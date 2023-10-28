@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 const FormLogin = () => {
   const navigate = useNavigate();
+  const auth = getAuth();
 
   const [formInput, setFormInput] = useState({
     email: "",
@@ -93,21 +99,35 @@ const FormLogin = () => {
     }
   };
 
-  const handleSumbit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (isFormValid) {
-      toast.success("Login Berhasil!");
+      signInWithEmailAndPassword(auth, formInput.email, formInput.password)
+        .then((userCredential) => {
+          // Berhasil login
+          const user = userCredential.user;
+          const userId = user.uid; // Mengambil ID pengguna Firebase
+          console.log("UserID: ", userId);
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+          // Simpan ID pengguna ke local storage
+          localStorage.setItem("userId", userId);
+
+          toast.success("Login Berhasil!");
+          setTimeout(() => {
+            navigate("/home");
+          }, 2000);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Email dan Password tidak sesuai");
+        });
     }
   };
 
   return (
     <div>
-      <form action="#" onSubmit={handleSumbit}>
+      <form action="#" onSubmit={handleSubmit}>
         <div className="mt-5">
           <div className="relative">
             <input
@@ -184,8 +204,10 @@ const FormLogin = () => {
             <button
               disabled={!isFormValid}
               type="submit"
-              className={`w-full bg-red-500 font-semibold ${
-                !isFormValid ? "bg-red-300 hover:cursor-default" : ""
+              className={`w-full  font-semibold ${
+                isFormValid === false
+                  ? "bg-red-300 hover:cursor-default"
+                  : "bg-red-500"
               } text-center py-2 text-white rounded-md hover:cursor-pointer`}
             >
               Login

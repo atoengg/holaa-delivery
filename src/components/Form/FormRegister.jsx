@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const FormRegister = () => {
   const navigate = useNavigate();
+  const auth = getAuth();
 
   const [formInput, setFormInput] = useState({
     firstName: "",
@@ -157,11 +159,18 @@ const FormRegister = () => {
     e.preventDefault();
 
     if (isFormValid) {
-      toast.success("Registrasi Berhasil!");
-
-      setTimeout(() => {
-        navigate("/Login");
-      }, 2000);
+      createUserWithEmailAndPassword(auth, formInput.email, formInput.password)
+        .then((user) => {
+          //berhasil
+          toast.success("Registrasi Berhasil!");
+          setTimeout(() => {
+            navigate("/Login");
+          }, 2000);
+        })
+        .catch((erorr) => {
+          console.log(erorr);
+          toast.error("Registrasi Gagal!");
+        });
     }
   };
   return (
@@ -320,8 +329,8 @@ const FormRegister = () => {
           <button
             disabled={!isFormValid}
             type="submit"
-            className={`w-full bg-red-500 font-semibold ${
-              !isFormValid ? "bg-red-300 hover:cursor-default" : ""
+            className={`w-full font-semibold ${
+              !isFormValid ? "bg-red-300 hover:cursor-default" : "bg-red-500 "
             } text-center py-2 text-white rounded-md hover:cursor-pointer`}
           >
             Register
