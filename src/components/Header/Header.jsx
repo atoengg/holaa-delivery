@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Logo from "../../assets/logo/logo.png";
+import Logo from "../../assets/logo/Logo.png";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   FaShoppingCart,
