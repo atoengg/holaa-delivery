@@ -23,9 +23,9 @@ const Footer = () => {
                 </h2>
               </div>
               <p className="text-sm text-slate-600 mt-5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestiae nobis temporibus fuga harum in dolor quo, aperiam
-                possimus eos quos.
+                semuanya siap untuk kami antarkan ke rumah Anda. Nikmati
+                pengalaman pesan antar yang praktis dan lezat dengan Holaa
+                Delivery!.
               </p>
             </div>
 

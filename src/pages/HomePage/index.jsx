@@ -67,17 +67,17 @@ const HomePage = () => {
     {
       title: "Easy To Order",
       imgUrl: easyOrderImg,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hicdicta exercitationem asperiores quod architecto!",
+      desc: "semuanya dirancang agar Anda dapat memesan makanan dan minuman dengan cepat dan efisien. Kami percaya bahwa kemudahan ini adalah kunci untuk memberikan pengalaman pelanggan yang memuaskan.",
     },
     {
       title: "Fasted Delivery",
       imgUrl: fastedDeliveryImg,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hicdicta exercitationem asperiores quod architecto!",
+      desc: "kami memberikan layanan unggulan, Anda dapat yakin pesanan Anda akan tiba dengan cepat, tetap segar, dan siap dinikmati. Holaa Delivery memberikan kecepatan yang Anda butuhkan dalam setiap hidangan!",
     },
     {
       title: "Best Quality",
       imgUrl: bestQualityImg,
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hicdicta exercitationem asperiores quod architecto!",
+      desc: "Kami percaya bahwa kualitas adalah kunci kelezatan. Dengan 'Best Quality', Anda dapat yakin bahwa setiap kunjungan ke Cafe kami akan memberikan pengalaman kuliner terbaik yang tak terlupakan.",
     },
   ];
 
@@ -93,10 +93,12 @@ const HomePage = () => {
                 <span className="text-red-500">Makanan</span> dan{" "}
                 <span className="text-red-500">Minuman</span> Anda.
               </h1>
-              <p className="text-base text-left text-slate-600 max-w-[480px] mb-8 lg:text-justify">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et
-                delectus provident amet esse error quasi porro exercitationem
-                similique.
+              <p className="text-base text-left text-slate-800 max-w-[480px] mb-8 lg:text-left">
+                Holaa Delivery, merupakan layanan terbaru di Cafe kami agar Anda
+                dapat dengan mudah memesan hidangan dan minuman favorit kami.
+                Dari makanan istimewa hingga minuman segar, semuanya siap untuk
+                kami antarkan ke rumah Anda. Nikmati pengalaman pesan antar yang
+                praktis dan lezat dengan Holaa Delivery!.
               </p>
 
               <div className="flex flex-row gap-4">
@@ -159,7 +161,7 @@ const HomePage = () => {
           >
             {services_item?.map((item, index) => (
               <div
-                className={`bg-white text-center flex flex-col items-center rounded-md px-8 pb-8 ${
+                className={`bg-white text-center  flex flex-col items-center rounded-md px-8 pb-8 ${
                   index === 1 ? "shadow-serve" : ""
                 }`}
                 key={index}
@@ -176,7 +178,7 @@ const HomePage = () => {
                   {item.title}
                 </h3>
 
-                <p className="text-sm text-slate-500">{item.desc}</p>
+                <p className="text-sm text-slate-800 mt-4">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -268,11 +270,8 @@ const HomePage = () => {
               Testimonials About Us
             </h2>
             <span className="bg-red-500 px-10  rounded-full"></span>
-            <p className="mt-4 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Inventore laborum accusantium dolores deserunt itaque commodi
-              ducimus. Placeat rem, molestiae error obcaecati enim doloribus
-              impedit aliquam, maiores qui minus neque.
+            <p className="mt-4 text-lg">
+              Cerita Pengalaman Mereka Dalam Merasakan Layanan Holaa Delivery.
             </p>
           </div>
 

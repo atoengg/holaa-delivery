@@ -10,21 +10,21 @@ const Testimoni = () => {
       imgUrl: testimoni1Img,
       name: "Sulaimain",
       testi:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis possimus unde maiores provident doloribus, aliquam exercitatione velit consequuntur quibusdam quas, architecto beatae dolore atque, deserunt ex. Officia possimus ex corporis?",
+        "Terima kasih Cafe Holaa Delivery! Saya benar-benar terkesan dengan hidangan yang luar biasa dan layanan yang ramah. Rasanya seperti membawa restoran favorit saya ke dalam rumah. Saya pasti akan kembali lagi untuk mencoba lebih banyak hidangan lezat!",
       alamat: "Gresik, Indonesia",
     },
     {
       imgUrl: testimoni2Img,
       name: "Surti Dwi Inasari",
       testi:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis possimus unde maiores provident doloribus, aliquam exercitatione velit consequuntur quibusdam quas, architecto beatae dolore atque, deserunt ex. Officia possimus ex corporis?",
-      alamat: "Jombang, Indonesia",
+        "Wow! Saya sangat senang dengan pengalaman pesan antar dari Cafe Holaa Delivery. Hidangan mereka selalu tiba dalam kondisi segar dan rasa yang lezat. Ini adalah solusi sempurna untuk hari-hari sibuk ketika saya ingin makan enak tanpa harus keluar rumah. Terima kasih Holaa Delivery!",
+      alamat: "Bejan-Panceng-Gresik",
     },
     {
       imgUrl: testimoni3Img,
       name: "Thierry Henry",
       testi:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis possimus unde maiores provident doloribus, aliquam exercitatione velit consequuntur quibusdam quas, architecto beatae dolore atque, deserunt ex. Officia possimus ex corporis?",
+        "Saya telah menjadi pelanggan setia Cafe Holaa Delivery selama beberapa bulan terakhir, dan saya belum pernah kecewa. Hidangan mereka selalu penuh rasa, dengan bahan-bahan segar dan berkualitas. Saya juga sangat menghargai pelayanan cepat dan ramah dari tim pengantaran mereka. Holaa Delivery adalah pilihan terbaik untuk makanan lezat di kenyamanan rumah saya.",
       alamat: "Jakarta, Indonesia",
     },
   ];
