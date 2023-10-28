@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import imgContact from "../../assets/img/img-contact.jpg";
 import FormContact from "../../components/Form/FormContact";
 import { Toaster } from "react-hot-toast";
+import AOS from "aos";
 
 const Contact = () => {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 700,
+      easing: "ease-in-out",
+      delay: 300,
+    });
+  });
   return (
     <div>
       <section
@@ -44,7 +53,7 @@ const Contact = () => {
           style={{ background: "rgba(0, 0, 0, 0.5)" }}
         >
           <div className="flex justify-between ">
-            <div className="w-6/12">
+            <div className="w-6/12" data-aos="fade-right">
               <h3 className="text-[#f3fff4] font-bold text-5xl">
                 Hubungi Kami!
               </h3>
@@ -57,7 +66,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="w-6/12">
+            <div className="w-6/12" data-aos="fade-left">
               <div className="w-full h-full py-[50px] px-10 rounded-md">
                 <FormContact />
               </div>

@@ -14,6 +14,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import firebase from "./config/firebase.js";
 import { initializeApp } from "firebase/app";
 import AuthContext from "./context/AuthContext.jsx";
+import "aos/dist/aos.css";
 
 const app = initializeApp(firebase);
 
