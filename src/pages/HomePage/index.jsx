@@ -297,10 +297,10 @@ const HomePage = () => {
               <h2 className="font-bold text-4xl text-gray-800 sm:text-3xl">
                 Get The Groceries App Order More Easily.
               </h2>
-              <p className="mt-4 text-slate-500 text-sm">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-                provident exercitationem beatae a sit ipsa, eveniet totam ipsam
-                fuga.
+              <p className="mt-4 text-slate-800 text-sm">
+                Rasakan kemudahan Pelayanan Kami, Anda Dapat Unduh aplikasi kami
+                sekarang di Play Store atau di App Store dan tingkatkan
+                pengalaman bersantap Anda!.
               </p>
 
               <div className="flex flex-row mt-10 gap-2">
