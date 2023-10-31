@@ -14,7 +14,7 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="fixed right-8 bottom-10 z-[999]  ">
+    <div className="fixed right-8 bottom-10 z-[999]">
       <div
         className="py-[10px] bg-red-500 px-5 rounded-full flex items-center justify-center text-white cursor-pointer hover:bg-red-400 hover:duration-200 hover:transition "
         onClick={openChat}
