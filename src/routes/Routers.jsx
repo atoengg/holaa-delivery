@@ -15,23 +15,6 @@ import CheckoutSucces from "../pages/CheckoutSucces";
 import Protected from "./Protected";
 import { Context } from "../context/AuthContext";
 
-// const MainLayout = () => {
-//   return (
-//     <div>
-//       {/* Tambahkan elemen layout utama di sini, seperti header atau footer */}
-//       {/* <Layout /> */}
-
-//       <Header />
-//       <div className="">
-//         <Outlet />
-//       </div>
-//       <Footer />
-
-//       {/* Tambahkan elemen layout utama di sini, seperti footer */}
-//     </div>
-//   );
-// };
-
 const Routers = () => {
   const { user } = useContext(Context);
   return (
@@ -94,10 +77,7 @@ const Routers = () => {
         }
       />
       <Route path="/checkoutSucces" element={<CheckoutSucces />} />
-      <Route
-        path="/Register"
-        element={user ? <Navigate to={"/Register"} /> : <Register />}
-      />
+      <Route path="/Register" element={<Register />} />
       <Route path="/Login" element={<Login />} />
     </Routes>
   );
