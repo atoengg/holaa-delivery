@@ -85,7 +85,7 @@ const HomePage = () => {
     <div>
       {/* Hero Section */}
       <section className=" bg-white relative py-32">
-        <div className="container mx-auto px-8 md:px-6">
+        <div className="container mx-auto max-w-full px-8 md:px-6">
           <div className="flex items-center justify-between">
             <div className="w-full lg:w-8/12" data-aos="fade-right">
               <h1 className="font-bold text-4xl mb-5 leading-snug sm:text-[42px] lg:text-[40px] xl:text-[42px]">
@@ -145,7 +145,7 @@ const HomePage = () => {
 
       {/* services section */}
       <section className="bg-red-100">
-        <div className="container mx-auto px-8 py-12 md:px-6">
+        <div className="container mx-auto max-w-full px-8 py-12 md:px-6">
           <div className="text-center mb-10 lg:mb-6" data-aos="fade-down">
             <span className="text-red-500 font-medium text-sm">
               What We Serve
@@ -187,7 +187,7 @@ const HomePage = () => {
       {/* End services section */}
 
       {/* menu section */}
-      <section className="container mx-auto px-8 py-12 md:px-6">
+      <section className="container mx-auto max-w-full px-8 py-12 md:px-6">
         <div className="text-center mb-10 lg:mb-6">
           <div className="" data-aos="fade-down">
             <span className="text-red-500 font-medium text-sm">Our Menu</span>
@@ -263,7 +263,7 @@ const HomePage = () => {
       {/*End menu section */}
 
       {/* testimoni section */}
-      <section className="container mx-auto px-8 py-12 md:px-6">
+      <section className="container mx-auto max-w-full px-8 py-12 md:px-6">
         <div className="text-center mb-10 lg:mb-6">
           <div className="" data-aos="fade-down">
             <h2 className="font-bold text-4xl text-gray-800 mb-4 sm:text-3xl">
@@ -284,7 +284,7 @@ const HomePage = () => {
 
       {/* app section */}
       <section className="bg-red-100">
-        <div className="container mx-auto px-8 py-12 md:px-6">
+        <div className="container mx-auto max-w-full px-8 py-12 md:px-6">
           <div className="flex flex-row justify-center">
             <div className="w-5/12" data-aos="fade-right">
               <img src={appImg} alt="" />

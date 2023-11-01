@@ -14,7 +14,7 @@ const Cart = () => {
     <div>
       <CommonSection title={"Keranjang"} />
 
-      <section className="container mx-auto px-8 py-12 md:px-6">
+      <section className="container mx-auto max-w-full px-8 py-12 md:px-6">
         <div className=" grid grid-rows-1">
           {cartItems.length === 0 ? (
             <h5 className="text-center font-semibold">

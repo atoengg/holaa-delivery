@@ -36,7 +36,7 @@ const Login = () => {
         }}
       />
 
-      <div className="container mx-auto py-40">
+      <div className="container mx-auto max-w-full py-40">
         <div className="flex w-8/12 bg-white shadow-lg rounded-lg mx-auto overflow-hidden">
           <div className="relative w-1/2 flex flex-col items-center justify-center">
             <div className="absolute top-4 left-4 flex flex-col">

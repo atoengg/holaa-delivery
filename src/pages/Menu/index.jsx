@@ -60,7 +60,7 @@ const Menu = () => {
     <div>
       <CommonSection title="All Menus" />
 
-      <section className="container mx-auto px-8 py-12 md:px-6 ">
+      <section className="container mx-auto max-w-full px-8 py-12 md:px-6 ">
         <div className="flex items-center justify-between w-4/12 border border-slate-400 rounded-md py-2 px-4">
           <input
             type="text"

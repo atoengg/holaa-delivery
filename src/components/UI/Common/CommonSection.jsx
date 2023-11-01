@@ -10,7 +10,7 @@ const CommonSection = ({ title }) => {
           background: `linear-gradient(#212245b2, #212245b2), url(${bannerImg})`,
         }}
       >
-        <div className="container">
+        <div className="container mx-auto max-w-full">
           <h2 className="font-bold text-white text-3xl">{title}</h2>
         </div>
       </section>

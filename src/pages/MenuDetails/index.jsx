@@ -66,7 +66,7 @@ const MenuDetails = () => {
     <div>
       <CommonSection title={"Menu Details"} />
 
-      <section className="container mx-auto px-8 py-12 md:px-6">
+      <section className="container mx-auto max-w-full px-8 py-12 md:px-6">
         <div className="grid grid-rows-1 ">
           <div className="grid grid-cols-4 ">
             <div className="">

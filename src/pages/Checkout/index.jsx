@@ -14,7 +14,7 @@ const Checkout = () => {
     <div>
       <CommonSection title={"Checkout"} />
 
-      <section className="container mx-auto px-8 py-12 md:px-6">
+      <section className="container mx-auto max-w-full px-8 py-12 md:px-6">
         <div className="flex flex-wrap justify-between">
           <div className="w-6/12 shadow-md rounded-md shadow-slate-300/50 p-8 ">
             <h1 className="font-bold text-xl">Alamat Pengiriman</h1>
