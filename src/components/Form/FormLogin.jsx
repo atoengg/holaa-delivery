@@ -20,7 +20,6 @@ const FormLogin = () => {
   const [errMsg, setErrMsg] = useState({
     email: "",
     password: "",
-    checkbox: "",
   });
 
   const [isFormValid, setIsFormValid] = useState(true);
@@ -31,13 +30,26 @@ const FormLogin = () => {
     setIsFormValid(isFormValid);
   }, [errMsg]);
 
-  const handleInputLogin = (e) => {
-    const { name, value } = e.target;
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
 
-    setFormInput({
-      ...formInput,
-      [name]: value,
-    });
+    if (savedEmail && savedPassword) {
+      setFormInput((prevFormInput) => ({
+        ...prevFormInput,
+        email: savedEmail,
+        password: savedPassword,
+      }));
+    }
+  }, []);
+
+  const handleInputLogin = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setFormInput((prevFormInput) => ({
+      ...prevFormInput,
+      [name]: type === "checkbox" ? checked : value,
+    }));
 
     validateFormLogin(e);
   };
@@ -66,7 +78,7 @@ const FormLogin = () => {
           email: "",
         });
       }
-    } else if (name === "password") {
+    } else {
       if (value === "") {
         setErrMsg({
           ...errMsg,
@@ -84,18 +96,6 @@ const FormLogin = () => {
           password: "",
         });
       }
-    } else {
-      if (!checked) {
-        setErrMsg({
-          ...errMsg,
-          checkbox: "anda harus menyetujui syarat dan aturan",
-        });
-      } else {
-        setErrMsg({
-          ...errMsg,
-          checkbox: "",
-        });
-      }
     }
   };
 
@@ -103,6 +103,13 @@ const FormLogin = () => {
     e.preventDefault();
 
     if (isFormValid) {
+      if (formInput.checkbox) {
+        localStorage.setItem("email", formInput.email);
+        localStorage.setItem("password", formInput.password);
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+      }
       signInWithEmailAndPassword(auth, formInput.email, formInput.password)
         .then((userCredential) => {
           // Berhasil login
@@ -182,7 +189,6 @@ const FormLogin = () => {
           <div className="flex justify-between items-center mt-5">
             <div className="flex items-center">
               <input
-                required
                 type="checkbox"
                 name="checkbox"
                 className="w-4 h-4 mr-2"
@@ -196,9 +202,6 @@ const FormLogin = () => {
               <a href="#">Forgot Password?</a>
             </p>
           </div>
-          {errMsg.checkbox && (
-            <div className="text-red-500 text-sm">{errMsg.checkbox}</div>
-          )}
 
           <div className="mt-5">
             <button
