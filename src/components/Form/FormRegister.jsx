@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const FormRegister = () => {
   const navigate = useNavigate();
@@ -24,6 +25,8 @@ const FormRegister = () => {
     checkbox: "",
     confirmPassword: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   //state untuk mengecek apakah form valid
   const [isFormValid, setIsFormValid] = useState(true);
@@ -158,18 +161,22 @@ const FormRegister = () => {
   const handleSumbit = (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
     if (isFormValid) {
       createUserWithEmailAndPassword(auth, formInput.email, formInput.password)
         .then((user) => {
           //berhasil
           toast.success("Registrasi Berhasil!");
           setTimeout(() => {
+            setIsLoading(false);
             navigate("/Login");
           }, 2000);
         })
         .catch((erorr) => {
           console.log(erorr);
           toast.error("Registrasi Gagal!");
+          setIsLoading(false);
         });
     }
   };
@@ -325,17 +332,29 @@ const FormRegister = () => {
         {errMsg.checkbox && (
           <div className="text-red-500 text-sm">{errMsg.checkbox}</div>
         )}
-        <div className="mt-5">
-          <button
-            disabled={!isFormValid}
-            type="submit"
-            className={`w-full font-semibold ${
-              !isFormValid ? "bg-red-300 hover:cursor-default" : "bg-red-500 "
-            } text-center py-2 text-white rounded-md hover:cursor-pointer`}
-          >
-            Register
-          </button>
-        </div>
+
+        {isLoading ? (
+          <div className="text-center mt-3">
+            <ScaleLoader
+              color="#ef4444"
+              size={100}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        ) : (
+          <div className="mt-5">
+            <button
+              disabled={!isFormValid}
+              type="submit"
+              className={`w-full font-semibold ${
+                !isFormValid ? "bg-red-300 hover:cursor-default" : "bg-red-500 "
+              } text-center py-2 text-white rounded-md hover:cursor-pointer`}
+            >
+              Register
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );

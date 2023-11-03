@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartUiActions } from "../../redux/slices/shopping-cart/cartUiSlices";
 import { signOut, getAuth } from "firebase/auth";
 import { Context } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const Header = () => {
   const dispacth = useDispatch();
@@ -28,10 +29,21 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
-      // Hapus token pengguna dari local storage
-      localStorage.removeItem("userId");
-      navigate("/Login");
+      Swal.fire({
+        title: "Apakah Kamu Ingin Keluar?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          signOut(auth);
+          // Hapus token pengguna dari local storage
+          localStorage.removeItem("userId");
+          navigate("/Login");
+        }
+      });
     } catch (error) {
       console.log(error);
     }

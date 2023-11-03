@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const FormLogin = () => {
     email: "",
     password: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isFormValid, setIsFormValid] = useState(true);
 
@@ -110,6 +113,9 @@ const FormLogin = () => {
         localStorage.removeItem("email");
         localStorage.removeItem("password");
       }
+
+      setIsLoading(true);
+
       signInWithEmailAndPassword(auth, formInput.email, formInput.password)
         .then((userCredential) => {
           // Berhasil login
@@ -122,12 +128,14 @@ const FormLogin = () => {
 
           toast.success("Login Berhasil!");
           setTimeout(() => {
+            setIsLoading(false);
             navigate("/home");
           }, 2000);
         })
         .catch((error) => {
           console.log(error);
           toast.error("Email dan Password tidak sesuai");
+          setIsLoading(false);
         });
     }
   };
@@ -203,19 +211,30 @@ const FormLogin = () => {
             </p>
           </div>
 
-          <div className="mt-5">
-            <button
-              disabled={!isFormValid}
-              type="submit"
-              className={`w-full  font-semibold ${
-                isFormValid === false
-                  ? "bg-red-300 hover:cursor-default"
-                  : "bg-red-500"
-              } text-center py-2 text-white rounded-md hover:cursor-pointer`}
-            >
-              Login
-            </button>
-          </div>
+          {isLoading ? (
+            <div className="text-center mt-3">
+              <ScaleLoader
+                color="#ef4444"
+                size={100}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          ) : (
+            <div className="mt-5">
+              <button
+                disabled={!isFormValid}
+                type="submit"
+                className={`w-full  font-semibold ${
+                  isFormValid === false
+                    ? "bg-red-300 hover:cursor-default"
+                    : "bg-red-500"
+                } text-center py-2 text-white rounded-md hover:cursor-pointer`}
+              >
+                Login
+              </button>
+            </div>
+          )}
         </div>
       </form>
     </div>
